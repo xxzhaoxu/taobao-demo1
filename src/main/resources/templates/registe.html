@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"    >
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="reset.css" type="text/css">
+</head>
+<body>
+<!--<h2>快速注册</h2>-->
+<!--<form method="post" action="doRegiste">-->
+<!--    账号: <input type="text" name="username"><br>-->
+<!--    密码: <input type="password" name="password"><br>-->
+<!--    确定密码: <input type="password" name="p2"><br>-->
+<!--    <input type="submit"/>-->
+<!--</form>-->
+<div id="stylized"  class="myform">
+    <form id="form1" method="post" action="/doRegiste">
+        <h1>快速注册</h1>
+        <p>请准确填写个人信息...</p>
+        <label>Name <span class="small">用户名</span></label>
+        <input type="text" name="username"  >
+        <label>Password <span class="small">密码</span></label>
+        <input type="password" name="password"  >
+        <label>Password <span class="small">确认密码</span></label>
+        <input type="password" name="p2"  >
+        <button type="submit">注 册</button>
+        <a href="/login">有账号，去登录</a>
+        <div class="spacer"></div>
+    </form>
+</div>
+<div  class="msg" th:text="${message}"></div>
+</body>
+</html>

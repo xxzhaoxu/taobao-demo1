@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="reset.css" type="text/css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="header">
+    信息管理系统
+</div>
+<div class="container">
+    <div class="body">
+        <div class="left">
+            <div class="left-item">
+                <div><a href="/switchTag?tag=1">用户管理 </a></div>
+                <div><a href="/switchTag?tag=2">图书管理 </a></div>
+                <div><a href="/switchTag?tag=3">班级管理 </a></div>
+                <div><a href="/switchTag?tag=4">系统管理 </a></div>
+                <div><a href="/switchTag?tag=5">。。管理 </a></div>
+            </div>
+
+        </div>
+        <div class="right" th:switch="${tag}">
+            <table class="gridtable" id = "user" th:case="1">
+                <td th:text="编号"></td>
+                <td th:text="用户名"></td>
+                <td th:text="密码"></td>
+                <td th:text="操作"></td>
+                <tr th:each="item,userStat:${userMap}">
+                    <td th:text="${userStat.index}+1"></td>
+                    <td th:text="${userStat.current.key}"></td>
+                    <td th:text="${userStat.current.value}"></td>
+                    <td><a th:href="@{'/delUser?username='+${userStat.current.key}}">删除</a></td>
+                </tr>
+            </table>
+            <table class="gridtable" th:case="2">
+                <td th:text="编号"></td>
+                <td th:text="书名"></td>
+                <td th:text="作者"></td>
+                <td th:text="价格"></td>
+                <td th:text="数量"></td>
+                <td th:text="操作"></td>
+                <tr th:each="item,bookStat:${bookMap}">
+                    <td th:text="${bookStat.index}+1"></td>
+                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.name}"></td>
+                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.author}"></td>
+                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.price}"></td>
+                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.num}"></td>
+                    <td><a th:each="name:${bookStat.current.key}" th:href="@{'/delBook?name='+${name}}">删除</a></td>
+                </tr>
+            </table>
+            <div th:case="*">暂未开放</div>
+        </div>
+    </div>
+</div>
+<div class="msg" th:text="${message}"></div>
+</body>
+<script>
+    $(document).ready(function(){
+        // alert();
+    });
+</script>
+</html>
