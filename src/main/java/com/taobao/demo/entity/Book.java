@@ -66,4 +66,12 @@ public class Book {
         return book.getName().equals(name)||book.getName()==name;
     }
 
+    public Book(){}
+    public Book(Long id, String name, BigDecimal price, Integer num, String author) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.num = num;
+        this.author = author;
+    }
 }

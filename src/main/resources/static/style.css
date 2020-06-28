@@ -5,6 +5,10 @@ body {
     font-size: 12px;
 }
 
+.bg{
+    background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593152179017&di=4999858eaeb99a2c9671b00ecbe30b63&imgtype=0&src=http%3A%2F%2Fimg.1ppt.com%2Fuploads%2Fallimg%2F1802%2F1_180227221503_1.jpg) no-repeat top left;
+    background-size: 100%;
+}
 .gridtable {
     font-family: verdana,arial,sans-serif;
     font-size:11px;
@@ -133,6 +137,7 @@ input:focus, button:focus {
 .header{
     width: 100%;
     height: 80px;
+    line-height: 80px;
     text-align: center;
     font-size: 50px;
 }
@@ -166,4 +171,9 @@ input:focus, button:focus {
 
 #book{
     display: none;
+}
+
+.table-header{
+    text-align: center;
+    font-size: 50px;
 }

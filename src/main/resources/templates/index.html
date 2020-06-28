@@ -2,65 +2,102 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>首页</title>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="reset.css" type="text/css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
-<body>
+<body class="bg">
 <div class="header">
-    信息管理系统
+    学生证管理系统
 </div>
 <div class="container">
     <div class="body">
         <div class="left">
             <div class="left-item">
-                <div><a href="/switchTag?tag=1">用户管理 </a></div>
-                <div><a href="/switchTag?tag=2">图书管理 </a></div>
-                <div><a href="/switchTag?tag=3">班级管理 </a></div>
-                <div><a href="/switchTag?tag=4">系统管理 </a></div>
-                <div><a href="/switchTag?tag=5">。。管理 </a></div>
+                <div><a href="/switchTag?tag=1">用户管理</a></div>
+                <div><a href="/switchTag?tag=2">学生证管理</a></div>
             </div>
-
         </div>
         <div class="right" th:switch="${tag}">
-            <table class="gridtable" id = "user" th:case="1">
-                <td th:text="编号"></td>
-                <td th:text="用户名"></td>
-                <td th:text="密码"></td>
-                <td th:text="操作"></td>
-                <tr th:each="item,userStat:${userMap}">
-                    <td th:text="${userStat.index}+1"></td>
-                    <td th:text="${userStat.current.key}"></td>
-                    <td th:text="${userStat.current.value}"></td>
-                    <td><a th:href="@{'/delUser?username='+${userStat.current.key}}">删除</a></td>
-                </tr>
-            </table>
-            <table class="gridtable" th:case="2">
-                <td th:text="编号"></td>
-                <td th:text="书名"></td>
-                <td th:text="作者"></td>
-                <td th:text="价格"></td>
-                <td th:text="数量"></td>
-                <td th:text="操作"></td>
-                <tr th:each="item,bookStat:${bookMap}">
-                    <td th:text="${bookStat.index}+1"></td>
-                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.name}"></td>
-                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.author}"></td>
-                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.price}"></td>
-                    <td th:each="entity:${bookStat}" th:text="${entity.current.value.num}"></td>
-                    <td><a th:each="name:${bookStat.current.key}" th:href="@{'/delBook?name='+${name}}">删除</a></td>
-                </tr>
-            </table>
-            <div th:case="*">暂未开放</div>
+            <div class="form-search" th:case="1">
+                <form method="post" action="/findUser" >
+                    <input type="text" autocomplete="off" placeholder="请出入用户名" name="sName">
+                    <input type="submit" value="查询">
+                </form>
+                <table class="gridtable">
+                    <td th:text="编号"></td>
+                    <td th:text="用户名"></td>
+                    <td th:text="密码"></td>
+                    <td th:text="操作"></td>
+                    <tr th:each="user:${userList}">
+                        <td th:text="${user.uid}"></td>
+                        <td th:text="${user.userName}"></td>
+                        <td th:text="${user.passWord}"></td>
+                        <td>
+                            <a th:href="@{'/delUser?uid='+${user.uid} + '&tag='+${tag}}">删除</a>
+                            <a th:href="@{'/updateUser?uid='+${user.uid} + '&tag='+${tag}}">修改</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div  th:case="2">
+                <form method="post" action="/findStudentCard">
+                    <select name="findType">
+                        <option value="0">全部</option>
+                        <option value="1">姓名</option>
+                        <option value="2">学号</option>
+                        <option value="3">学校</option>
+                        <option value="4">专业</option>
+                        <option value="5">性别</option>
+                    </select>
+                    <input type="text" name="t" autocomplete="off" placeholder="请输入查询条件"/>
+                    <input type="submit" value="查询">
+                    <input type="button" value="添加" id = "addStudentCard">
+                </form>
+                <table class="gridtable">
+                    <td th:text="编号"></td>
+                    <td th:text="姓名"></td>
+                    <td th:text="学号"></td>
+                    <td th:text="学校"></td>
+                    <td th:text="专业"></td>
+                    <td th:text="性别"></td>
+                    <td th:text="入学时间"></td>
+                    <td th:text="毕业时间"></td>
+                    <td th:text="创建时间"></td>
+                    <td th:text="操作"></td>
+                    <tr th:each="student:${studentCardList}">
+                        <td th:text="${student.sid}"></td>
+                        <td th:text="${student.name}"></td>
+                        <td th:text="${student.sNo}"></td>
+                        <td th:text="${student.school}"></td>
+                        <td th:text="${student.professional}"></td>
+                        <td th:text="${student.gender=='0'?'女':'男'}"></td>
+                        <td th:text="${#dates.format(student.startTime, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(student.endTime, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(student.createTime, 'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a th:href="@{'/delStudent?sid='+${student.sid} + '&tag='+${tag}}">删除</a>
+                            <a th:href="@{'/updateStudentCard?sid='+${student.sid}}">修改</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div  class="msg" th:text="${message}"></div>
+
         </div>
     </div>
 </div>
-<div class="msg" th:text="${message}"></div>
 </body>
 <script>
     $(document).ready(function(){
-        // alert();
+        $("#addStudentCard").click(function () {
+            window.location.href="/addStudentCard"
+        })
     });
 </script>
 </html>

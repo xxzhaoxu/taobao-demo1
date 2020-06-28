@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taobao.demo.mapper.StudentCardMapper">
+  <resultMap id="BaseResultMap" type="com.taobao.demo.entity.StudentCard">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="s_no" jdbcType="VARCHAR" property="sNo" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="head_img" jdbcType="DATE" property="headImg" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="professional" jdbcType="VARCHAR" property="professional" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sid, name, s_no, start_time, end_time, create_time, head_img, school, professional, 
+    gender
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_student_card
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <select id="selectStudentCard" resultMap="BaseResultMap" parameterType="com.taobao.demo.entity.StudentCard">
+    select * from  tb_student_card where 1 =1
+    <trim   suffixOverrides=",">
+    <if test="name != null">
+      and name = #{name,jdbcType=VARCHAR},
+    </if>
+    <if test="sNo != null">
+      and s_no = #{sNo,jdbcType=VARCHAR},
+    </if>
+    <if test="startTime != null">
+      and start_time = #{startTime,jdbcType=DATE},
+    </if>
+    <if test="endTime != null">
+      and end_time = #{endTime,jdbcType=DATE},
+    </if>
+    <if test="createTime != null">
+      and create_time = #{createTime,jdbcType=DATE},
+    </if>
+    <if test="headImg != null">
+      and head_img = #{headImg,jdbcType=DATE},
+    </if>
+    <if test="school != null">
+      and  school = #{school,jdbcType=VARCHAR},
+    </if>
+    <if test="professional != null">
+      and  professional = #{professional,jdbcType=VARCHAR},
+    </if>
+    <if test="gender != null">
+      and gender = #{gender,jdbcType=CHAR},
+    </if>
+    </trim>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_student_card
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.taobao.demo.entity.StudentCard">
+    insert into tb_student_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        sid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sNo != null">
+        s_no,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="headImg != null">
+        head_img,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="professional != null">
+        professional,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sNo != null">
+        #{sNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="headImg != null">
+        #{headImg,jdbcType=DATE},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.taobao.demo.entity.StudentCard">
+    update tb_student_card
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sNo != null">
+        s_no = #{sNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="headImg != null">
+        head_img = #{headImg,jdbcType=DATE},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>

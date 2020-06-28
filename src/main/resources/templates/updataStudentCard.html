@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改学生证信息</title>
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="reset.css" type="text/css">
+</head>
+<body>
+<div id="stylized"  class="myform">
+    <form method="post" action="/doUpdataStudentCard">
+        <h2 style="text-align: center;font-size: 40px;margin-bottom: 26px">修改学生证信息</h2>
+        <label><span class="small">姓名</span></label>
+        <input type="text" autocomplete="off" name="name" th:value="${studentCard.name}"  >
+        <input type="hidden"  name="sid" th:value="${studentCard.sid}">
+        <label> <span class="small">学号</span></label>
+        <input type="text" name="sno"  th:value="${studentCard.sNo}" >
+        <label> <span class="small">学校</span></label>
+        <input type="text" name="school" th:value="${studentCard.school}" >
+        <label> <span class="small">专业</span></label>
+        <input type="text" name="professional"  th:value="${studentCard.professional}" >
+        <label> <span class="small">性别</span></label>
+        <select name="gender" style="width: 200px;margin: 2px 0 20px 10px; padding: 4px 2px" th:value="${studentCard.gender}">
+            <option value="1">男</option>
+            <option value="0">女</option>
+        </select>
+        <label> <span class="small">入学时间</span></label>
+        <input type="datetime-local" name="startTime" th:value="${#dates.format(studentCard.startTime, 'yyyy-MM-dd')} + 'T' + ${#dates.format(studentCard.startTime, 'HH:mm:ss')}"/>
+        <label> <span class="small">毕业时间</span></label>
+        <input type="datetime-local" name="endTime" th:value="${#dates.format(studentCard.endTime, 'yyyy-MM-dd')} + 'T' + ${#dates.format(studentCard.endTime, 'HH:mm:ss')}"  >
+        <label> <span class="small">发证时间</span></label>
+        <input type="datetime-local" name="createTime"  th:value="${#dates.format(studentCard.createTime, 'yyyy-MM-dd')} + 'T' + ${#dates.format(studentCard.createTime, 'HH:mm:ss')}" >
+        <button type="submit">修 改</button>
+        <a href="/backIndex?tag=2">返回</a>
+        <div class="spacer"></div>
+    </form>
+</div>
+<div  class="msg" th:text="${message}"></div>
+</body>
+</html>
