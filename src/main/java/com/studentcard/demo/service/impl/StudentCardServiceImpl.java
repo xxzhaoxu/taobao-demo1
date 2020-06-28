@@ -1,8 +1,8 @@
-package com.taobao.demo.service.impl;
+package com.studentcard.demo.service.impl;
 
-import com.taobao.demo.entity.StudentCard;
-import com.taobao.demo.mapper.StudentCardMapper;
-import com.taobao.demo.service.StudentCardService;
+import com.studentcard.demo.service.StudentCardService;
+import com.studentcard.demo.entity.StudentCard;
+import com.studentcard.demo.mapper.StudentCardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

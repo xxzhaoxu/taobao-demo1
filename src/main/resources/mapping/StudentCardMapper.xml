@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.taobao.demo.mapper.StudentCardMapper">
-  <resultMap id="BaseResultMap" type="com.taobao.demo.entity.StudentCard">
+<mapper namespace="com.studentcard.demo.mapper.StudentCardMapper">
+  <resultMap id="BaseResultMap" type="com.studentcard.demo.entity.StudentCard">
     <id column="sid" jdbcType="INTEGER" property="sid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="s_no" jdbcType="VARCHAR" property="sNo" />
@@ -23,7 +23,7 @@
     from tb_student_card
     where sid = #{sid,jdbcType=INTEGER}
   </select>
-  <select id="selectStudentCard" resultMap="BaseResultMap" parameterType="com.taobao.demo.entity.StudentCard">
+  <select id="selectStudentCard" resultMap="BaseResultMap" parameterType="com.studentcard.demo.entity.StudentCard">
     select * from  tb_student_card where 1 =1
     <trim   suffixOverrides=",">
     <if test="name != null">
@@ -60,7 +60,7 @@
     where sid = #{sid,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insertSelective" parameterType="com.taobao.demo.entity.StudentCard">
+  <insert id="insertSelective" parameterType="com.studentcard.demo.entity.StudentCard">
     insert into tb_student_card
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sid != null">
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.taobao.demo.entity.StudentCard">
+  <update id="updateByPrimaryKeySelective" parameterType="com.studentcard.demo.entity.StudentCard">
     update tb_student_card
     <set>
       <if test="name != null">

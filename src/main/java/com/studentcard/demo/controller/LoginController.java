@@ -1,10 +1,9 @@
-package com.taobao.demo.controller;
+package com.studentcard.demo.controller;
 
-import com.taobao.demo.config.DataBase;
-import com.taobao.demo.entity.StudentCard;
-import com.taobao.demo.entity.User;
-import com.taobao.demo.service.StudentCardService;
-import com.taobao.demo.service.UserService;
+import com.studentcard.demo.entity.StudentCard;
+import com.studentcard.demo.entity.User;
+import com.studentcard.demo.service.StudentCardService;
+import com.studentcard.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -16,15 +15,10 @@ import org.thymeleaf.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-/**
- * @author zhaoxu
- */
+
 @Controller
 public class LoginController {
-    @Autowired
-    private DataBase dataBase;
     @Autowired
     private UserService userService;
     @Autowired
@@ -98,18 +92,7 @@ public class LoginController {
         return "index";
     }
 
-    @GetMapping("/delBook")
-    public String delBook(@RequestParam("name")String name,Model model){
-        boolean re = dataBase.delBook(name);
-        if (re){
-            model.addAttribute("message","操作成功!");
-        }else {
-            model.addAttribute("message","操作失败！");
-        }
-        model.addAttribute("userMap",dataBase.findAllUser());
-        model.addAttribute("bookMap",dataBase.findAllBook());
-        return "index";
-    }
+
 
     @GetMapping("/switchTag")
     public String switchTag(@RequestParam("tag")String tag,Model model){
@@ -187,10 +170,6 @@ public class LoginController {
     public String findStudentCard(
             @RequestParam(defaultValue = "0")Integer findType,
             @RequestParam("t")String name,
-//            @RequestParam("sno")String sno,
-//            @RequestParam("school")String school,
-//            @RequestParam("professional")String professional,
-//            @RequestParam("gender")String gender,
             Model model
     ){
         if ("".equals(name)){
@@ -263,7 +242,6 @@ public class LoginController {
         List<User> userList = userService.findUserListByName(null);
         model.addAttribute("userList",userList);
         model.addAttribute("tag","1");
-
          return "index";
     }
 }

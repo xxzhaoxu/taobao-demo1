@@ -1,6 +1,6 @@
-package com.taobao.demo.service;
+package com.studentcard.demo.service;
 
-import com.taobao.demo.entity.User;
+import com.studentcard.demo.entity.User;
 
 import java.util.List;
 

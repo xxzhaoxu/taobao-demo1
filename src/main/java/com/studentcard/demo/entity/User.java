@@ -1,4 +1,4 @@
-package com.taobao.demo.entity;
+package com.studentcard.demo.entity;
 
 public class User {
     private Integer uid;

@@ -1,12 +1,11 @@
-package com.taobao.demo.mapper;
+package com.studentcard.demo.mapper;
 
-import com.taobao.demo.entity.User;
+import com.studentcard.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer uid);
 

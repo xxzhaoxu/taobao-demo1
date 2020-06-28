@@ -1,8 +1,8 @@
-package com.taobao.demo.service.impl;
+package com.studentcard.demo.service.impl;
 
-import com.taobao.demo.entity.User;
-import com.taobao.demo.mapper.UserMapper;
-import com.taobao.demo.service.UserService;
+import com.studentcard.demo.entity.User;
+import com.studentcard.demo.mapper.UserMapper;
+import com.studentcard.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

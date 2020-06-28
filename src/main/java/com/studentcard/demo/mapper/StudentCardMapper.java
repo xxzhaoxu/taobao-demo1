@@ -1,14 +1,10 @@
-package com.taobao.demo.service;
+package com.studentcard.demo.mapper;
 
-import com.taobao.demo.entity.StudentCard;
+import com.studentcard.demo.entity.StudentCard;
 
 import java.util.List;
 
-/**
- * @author create by zhaoxu
- * @create 2020/6/27
- */
-public interface StudentCardService {
+public interface StudentCardMapper {
     int deleteByPrimaryKey(Integer sid);
 
     int insertSelective(StudentCard record);
@@ -18,5 +14,4 @@ public interface StudentCardService {
     int updateByPrimaryKeySelective(StudentCard record);
 
     List<StudentCard> selectStudentCard(StudentCard studentCard);
-
 }
